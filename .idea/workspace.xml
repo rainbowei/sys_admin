@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed1f339f-419f-4b6a-9bd2-b216babbe4a0" name="Default Changelist" comment="" />
+    <list default="true" id="ed1f339f-419f-4b6a-9bd2-b216babbe4a0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/AdminLTE-2.4.10/starter.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/AdminLTE-2.4.10/starter.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,13 +22,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="352" />
+          <entry key="html" value="394" />
           <entry key="py" value="166" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="352" />
+          <entry key="HTML" value="394" />
           <entry key="Python" value="166" />
         </counts>
       </usages-collector>
@@ -53,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/AdminLTE-2.4.10/starter.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="266" column="42" selection-start-line="266" selection-start-column="42" selection-end-line="266" selection-end-column="42" />
+            <state relative-caret-position="1994">
+              <caret line="362" column="49" selection-start-line="362" selection-start-column="49" selection-end-line="362" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -74,7 +78,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/static/AdminLTE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -112,8 +116,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-311" />
-    <option name="y" value="48" />
+    <option name="x" value="41" />
+    <option name="y" value="278" />
     <option name="width" value="1787" />
     <option name="height" value="663" />
   </component>
@@ -250,17 +254,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-311" y="48" width="1787" height="663" extended-state="0" />
+    <frame x="228" y="126" width="1787" height="663" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23839542" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23839542" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.11208406" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -376,8 +380,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/AdminLTE-2.4.10/starter.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="266" column="42" selection-start-line="266" selection-start-column="42" selection-end-line="266" selection-end-column="42" />
+        <state relative-caret-position="1994">
+          <caret line="362" column="49" selection-start-line="362" selection-start-column="49" selection-end-line="362" selection-end-column="49" />
         </state>
       </provider>
     </entry>
