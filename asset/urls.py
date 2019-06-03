@@ -8,6 +8,7 @@ from  django.conf.urls import  url
 import  asset.views as views
 
 urlpatterns = [
+    url('^index/',views.index),
     url('^add/',views.asset_add),
 ]
 

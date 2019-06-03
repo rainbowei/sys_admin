@@ -8,3 +8,9 @@ def asset_add(requests):
 
 
     return HttpResponse('hello word !')
+
+
+def index(requests):
+
+
+    return  render(requests,'index.html',locals())
