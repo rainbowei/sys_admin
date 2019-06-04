@@ -9,6 +9,8 @@ import  asset.views as views
 
 urlpatterns = [
     url('^index/',views.index),
+    url('^host_add/', views.host_add),
+    url('^host_list/', views.host_list),
     url('^add/',views.asset_add),
 ]
 
