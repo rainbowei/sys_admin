@@ -56,6 +56,15 @@
                        <td>{{host.ipaddres}}</td>
                        <td>{{host.manage_user}}</td>
                        <td>{{host.port}}</td>
+                       <td>{{ host.get_yw_display }}</td>
+                        <td class="text-green text-bold">{{ host.type_choice_display }}</td>
+
+
+
+                       <td>{{ host.get_status_display }}</td>
+                       <td>{{ host.c_time }}</td>
+                      <td>{{ host.memo}}</td>
+
 
               </tr>
                       {% endfor %}

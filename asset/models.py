@@ -14,12 +14,12 @@ class Host(models.Model):
     port = models.SmallIntegerField(null=True, blank=True, verbose_name='端口号')
     yewu = (
         ('app_yw', 'app业务'),
-        ('h5_yw'), 'H5业务',
+        ('h5_yw', 'H5业务'),
         ('www_yw', '官网业务'),
     )
 
 
-    yw=models.CharField(max_length=15,  choices=yewu,default='app_yw',verbose_name='业务类型')
+    yw=models.CharField( choices=yewu,default='app_yw',max_length=40,verbose_name='业务类型')
     asset_type_choice = (
         ('server', '服务器'),
         ('networkdevice', '网络设备'),
@@ -28,7 +28,7 @@ class Host(models.Model):
         ('software', '软件资产'),
     )
 
-    type_choice=models.CharField(choices=asset_type_choice,default='server',verbose_name='设备类型')
+    type_choice=models.CharField(choices=asset_type_choice,default='server',max_length=30,verbose_name='设备类型')
 
     asset_status = (
         (0, '在线'),
