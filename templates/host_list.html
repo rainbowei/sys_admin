@@ -57,10 +57,19 @@
                        <td>{{host.manage_user}}</td>
                        <td>{{host.port}}</td>
                        <td>{{ host.get_yw_display }}</td>
-                        <td class="text-green text-bold">{{ host.type_choice_display }}</td>
+                       {% if  host.type_choice == 'server' %}
+                        <td class="text-green text-bold">{{ host.get_type_choice_display}}</td>
+                       {%  elif host.type_choice ==  'networkdevice' %}
+                        <td class="text-red text-bold">{{ host.get_type_choice_display}}</td>
+
+                          {%  elif host.type_choice ==  'storagedevice' %}
+                        <td class="text-red text-bold">{{ host.get_type_choice_display}}</td>
+
+                        {% else %}
+                           <td class="text-yellow text-bold">{{ host.get_type_choice_display}}</td>
 
 
-
+                           {% endif %}
                        <td>{{ host.get_status_display }}</td>
                        <td>{{ host.c_time }}</td>
                       <td>{{ host.memo}}</td>
