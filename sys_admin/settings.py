@@ -25,7 +25,7 @@ SECRET_KEY = '#)n1qlt6lw29cu*zyp%h&zqig%1(3%(6%ca!xefl=j_s4&oz!l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'asset.apps.AssetConfig',
+    'sys_admin',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +78,12 @@ WSGI_APPLICATION = 'sys_admin.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'sys_admin',
+        'HOST':'192.168.10.99',
+        'USER':'root',
+        'PASSWORD':'123com'
+
     }
 }
 

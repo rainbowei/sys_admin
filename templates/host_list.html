@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}主机列表{% endblock %}
@@ -42,9 +43,25 @@
               <th>业务线</th>
                 <th>类型</th>
               <th>状态</th>
-              <th>更新日期</th>
-            </tr>
+              <th>添加日期</th>
+                <th>备注</th>
             </thead>
+              <tbody>
+
+                   {%  for host  in host_all %}
+              <tr>
+                    {{ forloop.counter }}
+                      <td>{{host.id}}</td>
+                      <td>{{host.hostname}}</td>
+                       <td>{{host.ipaddres}}</td>
+                       <td>{{host.manage_user}}</td>
+                       <td>{{host.port}}</td>
+
+              </tr>
+                      {% endfor %}
+
+
+              </tbody>
 
 
 

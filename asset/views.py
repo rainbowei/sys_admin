@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from  django.shortcuts import HttpResponse
+from  models import Host
+
 
 # Create your views here.
 
@@ -25,8 +27,7 @@ def index(requests):
 
 
 def host_list(requests):
-
-
+    host_all=Host.objects.all()
     return  render(requests, 'host_list.html', locals())
 
 
