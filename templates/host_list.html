@@ -8,78 +8,94 @@
 {% endblock %}
 
 {% block breadcrumb %}
-<!-- Content Header (Page header) -->
+    <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        主机列表
-        <small>asset info</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-        <li>资产总表</li>
-        <li class="active">主机列表</li>
-      </ol>
+        <h1>
+            主机列表
+            <small>asset info</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+            <li>资产总表</li>
+            <li class="active">主机列表</li>
+        </ol>
     </section>
 {% endblock %}
 
 {% block content %}
 
-       <div class="row">
+    <div class="row">
         <div class="col-xs-12">
-        <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">主机列表<small>:</small></h3>
-        </div>
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">主机列表<small>:</small></h3>
+                </div>
 
-    <div class="box-body">
-          <table id="assets_table" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-              <th>序号</th>
-              <th>主机名称</th>
-              <th>ip地址</th>
-              <th>管理用户</th>
-              <th>端口号</th>
-              <th>业务线</th>
-                <th>类型</th>
-              <th>状态</th>
-              <th>添加日期</th>
-                <th>备注</th>
-            </thead>
-              <tbody>
+                <div class="box-body">
+                    <table id="assets_table" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>主机名称</th>
+                            <th>ip地址</th>
+                            <th>管理用户</th>
+                            <th>端口号</th>
+                            <th>业务线</th>
+                            <th>类型</th>
+                            <th>状态</th>
+                            <th>添加日期</th>
+                            <th>操作<th>
+                            <th>备注</th>
+                        </thead>
+                        <tbody>
 
-                   {%  for host  in host_all %}
-              <tr>
-                    {{ forloop.counter }}
-                      <td>{{host.id}}</td>
-                      <td>{{host.hostname}}</td>
-                       <td>{{host.ipaddres}}</td>
-                       <td>{{host.manage_user}}</td>
-                       <td>{{host.port}}</td>
-                       <td>{{ host.get_yw_display }}</td>
-                       {% if  host.type_choice == 'server' %}
-                        <td class="text-green text-bold">{{ host.get_type_choice_display}}</td>
-                       {%  elif host.type_choice ==  'networkdevice' %}
-                        <td class="text-red text-bold">{{ host.get_type_choice_display}}</td>
+                        {%  for host  in host_all %}
+                            <tr>
+                                {{ forloop.counter }}
+                                <td>{{host.id}}</td>
+                                <td>{{host.hostname}}</td>
+                                <td>{{host.ipaddres}}</td>
+                                <td>{{host.manage_user}}</td>
+                                <td>{{host.port}}</td>
+                                <td>{{ host.get_yw_display }}</td>
+                                {% if  host.type_choice == 'server' %}
+                                    <td class="text-green text-bold">{{ host.get_type_choice_display}}</td>
+                                {%  elif host.type_choice ==  'networkdevice' %}
+                                    <td class="text-red text-bold">{{ host.get_type_choice_display}}</td>
 
-                          {%  elif host.type_choice ==  'storagedevice' %}
-                        <td class="text-red text-bold">{{ host.get_type_choice_display}}</td>
+                                {%  elif host.type_choice ==  'storagedevice' %}
+                                    <td class="text-orange text-bold">{{ host.get_type_choice_display}}</td>
+                                {%  elif host.type_choice ==  'securitydevice' %}
+                                    <td class="text-blue text-bold">{{ host.get_type_choice_display}}</td>
 
-                        {% else %}
-                           <td class="text-yellow text-bold">{{ host.get_type_choice_display}}</td>
+                                {% else %}
+                                    <td class="text-yellow text-bold">{{ host.get_type_choice_display}}</td>
+
+                                {% endif %}
+
+                                {% if host.status == 0 %}
+                                    <td class="text-center"><label class="label label-success">{{ host.get_status_display }}</label></td>
+
+                                {% elif host.status == 1 %}
+                                    <td><label class="label label-warning">{{ host.get_status_display }}</label></td>
+                                 {% elif host.status == 2 %}
+                                    <td><label class="label label-default">{{ host.get_status_display }}</label></td>
+                                  {% elif host.status == 3 %}
+                                    <td><label class="label label-danger">{{ host.get_status_display }}</label></td>
+                                 {% elif host.status == 4 %}
+                                    <td><label class="label label-info">{{ host.get_status_display }}</label></td>
+                                {% endif %}
+
+                                <td>{{ host.c_time }}</td>
+                                <td> <button class="btn btn-sm btn-success">编辑</button>  </td>
+                                <td>{{ host.memo}}</td>
 
 
-                           {% endif %}
-                       <td>{{ host.get_status_display }}</td>
-                       <td>{{ host.c_time }}</td>
-                      <td>{{ host.memo}}</td>
+                            </tr>
+                        {% endfor %}
 
 
-              </tr>
-                      {% endfor %}
-
-
-              </tbody>
+                        </tbody>
 
 
 
