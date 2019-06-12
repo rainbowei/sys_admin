@@ -80,9 +80,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'sys_admin',
-        'HOST':'192.168.10.99',
+        'HOST':'127.0.0.1',
         'USER':'root',
-        'PASSWORD':'123com'
+        'PASSWORD':'sunkewei'
 
     }
 }
