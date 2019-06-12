@@ -42,9 +42,41 @@
     <!-- /.box-body -->
   </div>
 </div>
-    <script>
 
-    $(function () {
+
+ <div class="col-md-6">
+    <!-- BAR CHART -->
+  <div class="box box-success">
+
+    <div class="box-header with-border">
+      <h3 class="box-title">设备类型统计：</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+        <div id="asset_type" style="width: 500px;height:300px;"></div>
+    </div>
+    <!-- /.box-body -->
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+{% block script %}
+
+  <script>
+
+$(function () {
+
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('barChart'));
 
@@ -65,18 +97,68 @@
                 name: '数量',
                 type: 'bar',
                 barWidth: '50%',
-                data: [1,2,3,4,5]
+                data: [{{ upline }},{{ dowline }},{{ faild }},{{ backup }},{{ unknow }}]
             }]
         };
             // 使用刚指定的配置项和数据显示图表。
             myChart.setOption(option);
     });
 
+</script>
 
-    </script>
+<script>
 
-{% endblock %}
+ $(function () {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('asset_type'));
+
+        // 指定图表的配置项和数据
+        option = {
+            title : {
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['服务器','网络设备','存储设备','安全设备','软件资产']
+            },
+            series : [
+                {
+                    name: '资产类型',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    label: {
+                          show: true,
+                         position: 'top',
+                          formatter: '{d}%'　},
+                    data:[
+                        {value:{{ server_num }}, name:'服务器'},
+                        {value:{{ network_num }}, name:'网络设备'},
+                        {value:{{ store_num }}, name:'存储设备'},
+                        {value:{{ sec_num }}, name:'安全设备'},
+                        {value:{{ soft_num }}, name:'软件资产'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+    });
+
+</script>
 
 
-{% block script %}
+
 {% endblock %}
