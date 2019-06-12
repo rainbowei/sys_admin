@@ -46,6 +46,7 @@ class Host(models.Model):
     def __str__(self):
         return  self.hostname      #注册到admin后显示为具体到列名，没有到话回显示object对象。
     class Meta:
+
         verbose_name='主机列表'      #注册到admin后台的表名
         db_table = 'addhost'
-        ordering = ['c_time']
+        ordering = ['-c_time']

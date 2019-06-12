@@ -2,4 +2,8 @@ from django.contrib import admin
 from   models import  Host
 
 # Register your models here.
-admin.site.register(Host)
+class hostadmin(admin.ModelAdmin):
+        list_display = ('hostname','ipaddres','manage_user','port','yw','type_choice','status','c_time')
+        search_fields = ('hostname','ipaddres',)
+
+admin.site.register(Host,hostadmin)

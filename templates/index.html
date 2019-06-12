@@ -8,17 +8,73 @@
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        资产总表
+        仪表盘
         <small>assets list</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-        <li class="active">资产总表</li>
+        <li class="active">仪表盘</li>
       </ol>
     </section>
 {% endblock %}
 
 {% block content %}
+
+
+<script src="https://cdn.bootcss.com/echarts/4.2.1/echarts.min.js"></script>
+
+    <div class="col-md-6">
+    <!-- BAR CHART -->
+  <div class="box box-success">
+
+    <div class="box-header with-border">
+      <h3 class="box-title">各状态资产数量统计：</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+        <div id="barChart" style="width: 500px;height:300px;"></div>
+    </div>
+    <!-- /.box-body -->
+  </div>
+</div>
+    <script>
+
+    $(function () {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('barChart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            color: ['#3398DB'],
+            title: {
+                text: '数量'
+            },
+            tooltip: {},
+            legend: { data:['']
+            },
+            xAxis: {
+                data: ["在线", "下线","故障","备用","未知"] },
+            yAxis: {},
+            series:
+                [{
+                name: '数量',
+                type: 'bar',
+                barWidth: '50%',
+                data: [1,2,3,4,5]
+            }]
+        };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+    });
+
+
+    </script>
+
 {% endblock %}
 
 
