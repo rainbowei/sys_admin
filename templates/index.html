@@ -44,32 +44,32 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-xs-6 col-md-2 col-md-offset-1 text-center">
-                  <input type="text" class="knob" value="{{ up_rate }}" data-width="90" data-height="90" data-fgColor="#00a65a" data-readonly="true">
+                  <input type="text" class="knob" value={{ per_upline }} data-width="90" data-height="90" data-fgColor="#00a65a" data-readonly="true">
 
                   <div class="knob-label">在线</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-6 col-md-2 text-center">
-                  <input type="text" class="knob" value="{{ o_rate }}" data-width="90" data-height="90" data-fgColor="#f56954" data-readonly="true">
+                  <input type="text" class="knob" value="{{ per_downline }}" data-width="90" data-height="90" data-fgColor="#f56954" data-readonly="true">
 
                   <div class="knob-label">下线</div>
                 </div>
                 <!-- ./col -->
 
               <div class="col-xs-6 col-md-2 text-center">
-                  <input type="text" class="knob" value="{{ bd_rate }}" data-width="90" data-height="90" data-fgColor="#932ab6" data-readonly="true">
+                  <input type="text" class="knob" value="{{ per_faild }}" data-width="90" data-height="90" data-fgColor="#932ab6" data-readonly="true">
 
                   <div class="knob-label">故障</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-6 col-md-2 text-center">
-                  <input type="text" class="knob" value="{{ bu_rate }}" data-width="90" data-height="90" data-fgColor="#3c8dbc" data-readonly="true">
+                  <input type="text" class="knob" value="{{ per_backup }}" data-width="90" data-height="90" data-fgColor="#3c8dbc" data-readonly="true">
 
                   <div class="knob-label">备用</div>
                 </div>
                   <!-- ./col -->
                 <div class="col-xs-6 col-md-2 text-center">
-                  <input type="text" class="knob" value="{{ un_rate }}" data-width="90" data-height="90" data-fgColor="#cccccc" data-readonly="true">
+                  <input type="text" class="knob" value="{{ per_unknow }}" data-width="90" data-height="90" data-fgColor="#cccccc" data-readonly="true">
 
                   <div class="knob-label">未知</div>
                 </div>
@@ -103,7 +103,7 @@
     <!-- /.box-body -->
   </div>
 </div>
-
+ <!-- ********************************************************************************************* -->
 
  <div class="col-md-6">
     <!-- BAR CHART -->
