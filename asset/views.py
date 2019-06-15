@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from  django.shortcuts import HttpResponse
 from  models import Host
-
+from  asset import  host_form
 
 
 # Create your views here.
@@ -16,10 +16,15 @@ def asset_add(requests):
 
 
 def host_add(requests):
+    form=host_form.HostModelForm()
 
+    if requests.method=="GET":
 
-    return  render(requests, 'host_add.html', locals())
-
+        return  render(requests, 'host_add.html',locals())
+    else:
+         host=requests.POST.get('hostname')
+         print  host
+         return  HttpResponse('tijiao')
 
 def index(requests):
     total=float(Host.objects.count())
