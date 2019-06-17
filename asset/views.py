@@ -8,10 +8,6 @@ from asset import host_form
 # Create your views here.
 
 
-def asset_add(requests):
-    return HttpResponse('hello word !')
-
-
 def host_add(requests):
     form = host_form.HostModelForm()
 
@@ -22,6 +18,23 @@ def host_add(requests):
         form.save()
         return  redirect('/asset/host_list/')
     return render(requests, 'host_add.html', locals())
+
+
+
+def  host_edit(requests,nid):
+
+     obj=host_form.models.Host.objects.filter(id=nid).first()
+
+     if  requests.method=="GET":
+        form=host_form.HostModelForm(instance=obj)
+
+        return  redirect(requests,'host_add.html',locals())
+
+     form = host_form.HostModelForm(data=requests.POST,instance=obj)
+     if form.is_valid():
+         form.save()
+         return redirect('/asset/host_list/')
+     return render(requests, 'host_add.html', locals())
 
 
 def index(requests):
