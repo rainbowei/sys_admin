@@ -11,10 +11,10 @@ sys.setdefaultencoding("utf-8")
 class Host(models.Model):
     id = models.AutoField(primary_key=True)
     hostname = models.CharField(max_length=64, unique=True, verbose_name='主机名称')
-    ipaddres = models.GenericIPAddressField(null=True, blank=True, verbose_name='ip地址')
-    manage_user = models.ForeignKey(User, null=True, blank=True, verbose_name='管理用户', related_name='admin',
-                                    on_delete=models.SET_NULL)
-    port = models.SmallIntegerField(null=True, blank=True, verbose_name='端口号')
+    ipaddres = models.GenericIPAddressField(null=False, unique=True, verbose_name='ip地址')
+    manage_user = models.ForeignKey(User, null=False,verbose_name='管理用户', related_name='admin',
+                                    )
+    port = models.SmallIntegerField(null=False,verbose_name='端口号',default=22)
     yewu = (
         ('app_yw', 'app业务'),
         ('h5_yw', 'H5业务'),
@@ -22,7 +22,7 @@ class Host(models.Model):
     )
 
 
-    yw=models.CharField( choices=yewu,default='app_yw',max_length=40,verbose_name='业务类型')
+    yw=models.CharField( choices=yewu,default='app_yw',max_length=40,verbose_name='业务类型',null=False)
     asset_type_choice = (
         ('server', '服务器'),
         ('networkdevice', '网络设备'),
@@ -31,7 +31,7 @@ class Host(models.Model):
         ('software', '软件资产'),
     )
 
-    type_choice=models.CharField(choices=asset_type_choice,default='server',max_length=30,verbose_name='设备类型')
+    type_choice=models.CharField(choices=asset_type_choice,default='server',max_length=30,verbose_name='设备类型',null=False)
 
     asset_status = (
         (0, '在线'),

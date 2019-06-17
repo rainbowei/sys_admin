@@ -15,15 +15,15 @@ class HostModelForm(ModelForm):
         model = models.Host
         fields = "__all__"
         error_messages = {
-            'hostname': {'required': "主机名不能为空", },
-            'ipaddres': {'required': "ip地址不能为空", },
+
+            'hostname':{'required':'主机名不能为空'}
         }
 
         widgets = {
             'hostname': forms.TextInput(attrs={'class':'form-control', 'placeholder':'主机名'}),
             'ipaddres': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ip'}),
             'manage_user': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '管理用户'}),
-            'port': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ip'}),
+            'port': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '端口'}),
             'yw':forms.Select(attrs={'class': 'form-control'}),
             'type_choice': forms.Select(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
