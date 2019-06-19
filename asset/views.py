@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
-from models import Host
+from asset.models import Host
 from asset import host_form
 
 
@@ -13,28 +13,28 @@ def host_add(requests):
 
     if requests.method == "GET":
         return render(requests, 'host_add.html', locals())
-    form=host_form.HostModelForm(data=requests.POST)
+    form = host_form.HostModelForm(data=requests.POST)
     if form.is_valid():
         form.save()
-        return  redirect('/asset/host_list/')
+        return redirect('/asset/host_list/')
     return render(requests, 'host_add.html', locals())
 
 
+def host_edit(requests, nid):
 
-def  host_edit(requests,nid):
+    obj = Host.objects.filter(id=nid).first()
+    if requests.method == "GET":
+        form = host_form.HostModelForm(instance=obj)
 
-     obj=host_form.models.Host.objects.filter(id=nid).first()
+        return render(requests, 'host_add.html', locals())
 
-     if  requests.method=="GET":
-        form=host_form.HostModelForm(instance=obj)
 
-        return  redirect(requests,'host_add.html',locals())
 
-     form = host_form.HostModelForm(data=requests.POST,instance=obj)
-     if form.is_valid():
-         form.save()
-         return redirect('/asset/host_list/')
-     return render(requests, 'host_add.html', locals())
+    form = host_form.HostModelForm(data=requests.POST, instance=obj)
+    if form.is_valid():
+        form.save()
+        return redirect('/asset/host_list/')
+    return render(requests, 'host_add.html', locals())
 
 
 def index(requests):
