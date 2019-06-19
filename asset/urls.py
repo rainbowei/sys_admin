@@ -11,7 +11,8 @@ urlpatterns = [
     url('^index/',views.index),
     url('^host_add/', views.host_add),
     url('^host_list/', views.host_list),
-    url('^host_edit/(\d+)/',views.host_edit)
+    url('^host_edit/(\d+)/',views.host_edit),
+    url('^host_del/(\d+)/', views.host_del)
 
 ]
 

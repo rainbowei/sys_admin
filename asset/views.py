@@ -21,20 +21,23 @@ def host_add(requests):
 
 
 def host_edit(requests, nid):
-
     obj = Host.objects.filter(id=nid).first()
     if requests.method == "GET":
         form = host_form.HostModelForm(instance=obj)
 
         return render(requests, 'host_add.html', locals())
 
-
-
     form = host_form.HostModelForm(data=requests.POST, instance=obj)
     if form.is_valid():
         form.save()
         return redirect('/asset/host_list/')
     return render(requests, 'host_add.html', locals())
+
+
+def host_del(requests, nid):
+        Host.objects.filter(id=nid).delete()
+        return redirect('/asset/host_list/')
+
 
 
 def index(requests):

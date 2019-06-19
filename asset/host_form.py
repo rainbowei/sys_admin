@@ -22,10 +22,11 @@ class HostModelForm(ModelForm):
         widgets = {
             'hostname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '主机名'}),
             'ipaddres': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ip'}),
-            'manage_user': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '管理用户'}),
+            'manage_user': forms.Select(attrs={'class': 'form-control', 'placeholder': '管理用户'}),
             'port': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '端口'}),
             'yw': forms.Select(attrs={'class': 'form-control'}),
             'type_choice': forms.Select(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
+
 
         }
