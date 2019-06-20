@@ -14,6 +14,8 @@ urlpatterns = [
     url('^host_edit/(\d+)/',views.host_edit),
     url('^host_del/(\d+)/', views.host_del),
     url('task/',views.do_task),
+    url('test/', views.test),
+
 
 ]
 

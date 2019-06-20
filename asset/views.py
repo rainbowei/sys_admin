@@ -76,3 +76,33 @@ def do_task(request,*args,**kwargs):
      return JsonResponse({'status': 'successful', 'task_id': res.task_id})
 
 
+
+
+
+
+from django_celery_beat.models import PeriodicTask,IntervalSchedule
+
+
+def  test(requests):
+    if requests.method=="GET":
+        schedule, created = IntervalSchedule.objects.get_or_create(
+             every=10,
+             period=IntervalSchedule.SECONDS,
+        )
+
+        PeriodicTask.objects.create(
+
+            interval=schedule,
+            name='Importing contact',
+            task='sys_admin.tasks.add',
+
+        )
+
+        return  HttpResponse('ok')
+
+
+
+
+
+
+
