@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
 from asset.models import Host
 from asset import host_form
+from  asset import  tasks
+from  django.http import JsonResponse
 
 
 # Create your views here.
@@ -64,3 +66,13 @@ def index(requests):
 def host_list(requests):
     host_all = Host.objects.all()
     return render(requests, 'host_list.html', locals())
+
+
+
+
+def do_task(request,*args,**kwargs):
+     res=tasks.add.delay(1,2)
+
+     return JsonResponse({'status': 'successful', 'task_id': res.task_id})
+
+

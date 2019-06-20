@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'asset.apps.AssetConfig',
+    'django_celery_beat',
+    'django_celery_results',
     'sys_admin',
 ]
 
@@ -132,3 +134,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+# Broker配置，使用Redis作为消息中间件
+CELERY_BROKER_URL = 'redis://:123com@127.0.0.1:6379/0'
+
+# BACKEND配置，这里使用redis
+#CELERY_RESULT_BACKEND = 'redis://:123com@127.0.0.1:6379/0'
+
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+# 结果序列化方案
+CELERY_RESULT_SERIALIZER = 'json'
