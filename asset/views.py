@@ -5,6 +5,7 @@ from asset.models import Host
 from asset import host_form
 from  asset import  tasks
 from  django.http import JsonResponse
+from asset.celery_form  import Celery_form
 
 
 # Create your views here.
@@ -84,21 +85,32 @@ from django_celery_beat.models import PeriodicTask,IntervalSchedule
 
 
 def  test(requests):
-    if requests.method=="GET":
-        schedule, created = IntervalSchedule.objects.get_or_create(
-             every=10,
-             period=IntervalSchedule.SECONDS,
-        )
+    if requests.method == "POST":
+        form = Celery_form(requests.POST)
+        if form.is_valid():
 
-        PeriodicTask.objects.create(
+            return redirect('/')
+    else:
+        form = Celery_form()
+    return render(requests, 'celery_add.html', {'form': form})
 
-            interval=schedule,
-            name='Importing contact',
-            task='sys_admin.tasks.add',
 
-        )
 
-        return  HttpResponse('ok')
+
+        # schedule, created = IntervalSchedule.objects.get_or_create(
+        #      every=10,
+        #      period=IntervalSchedule.SECONDS,
+        # )
+        #
+        # PeriodicTask.objects.create(
+        #
+        #     interval=schedule,
+        #     name='Importing contact',
+        #     task='sys_admin.tasks.add',
+        #
+        # )
+        #
+        # return  HttpResponse('ok')
 
 
 
