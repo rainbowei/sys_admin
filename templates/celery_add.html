@@ -7,12 +7,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            主机添加
+            任务管理
             <small>dashboard</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-            <li class="active">主机添加</li>
+            <li class="active">任务管理</li>
         </ol>
     </section>
 {% endblock %}
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-lg-8">
                             <fieldset>
-                                <legend>主机添加</legend>
+                                <legend>添加任务</legend>
                                 <form role="form" method="post" id="addAssets" class="main form-horizontal" novalidate>
 
 
@@ -44,9 +44,30 @@
                                             <label class="col-sm-2 control-label">{{ form.name.label }}</label>
                                             <div class="col-sm-6">
                                                 {{ form.name }}
-
+                                                {{ form.name.errors }}
                                             </div>
                                         </div>
+
+
+
+                                          <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{ form.task.label }}</label>
+                                            <div class="col-sm-6">
+                                                {{ form.task }}
+                                                {{ form.task.errors }}
+                                            </div>
+                                        </div>
+
+
+                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{ form.every.label }}</label>
+                                            <div class="col-sm-6">
+                                                {{ form.every }}
+                                                {{ form.name.errors }}
+                                            </div>
+                                        </div>
+
+
 
 
                                     </fieldset>

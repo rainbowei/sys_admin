@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
 from asset.models import Host
 from asset import host_form
-from  asset import  tasks
-from  django.http import JsonResponse
-from asset.celery_form  import Celery_form
+from asset import tasks
+from django.http import JsonResponse
+from asset.celery_form import Celery_form
+from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 
 # Create your views here.
@@ -38,9 +39,8 @@ def host_edit(requests, nid):
 
 
 def host_del(requests, nid):
-        Host.objects.filter(id=nid).delete()
-        return redirect('/asset/host_list/')
-
+    Host.objects.filter(id=nid).delete()
+    return redirect('/asset/host_list/')
 
 
 def index(requests):
@@ -69,52 +69,37 @@ def host_list(requests):
     return render(requests, 'host_list.html', locals())
 
 
+def do_task(request, *args, **kwargs):
+    res = tasks.add.delay(1, 2)
+
+    return JsonResponse({'status': 'successful', 'task_id': res.task_id})
 
 
-def do_task(request,*args,**kwargs):
-     res=tasks.add.delay(1,2)
-
-     return JsonResponse({'status': 'successful', 'task_id': res.task_id})
+from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 
-
-
-
-
-from django_celery_beat.models import PeriodicTask,IntervalSchedule
-
-
-def  test(requests):
+def cellery_add(requests):
+    form = Celery_form(requests.POST)
     if requests.method == "POST":
-        form = Celery_form(requests.POST)
-        if form.is_valid():
 
-            return redirect('/')
-    else:
-        form = Celery_form()
+            name = requests.POST.get('name'),
+            every = requests.POST.get('every'),
+            task = requests.POST.get('task'),
+            schedule, created = IntervalSchedule.objects.get_or_create(
+                every=every,
+                period=IntervalSchedule.SECONDS,
+            )
+
+            PeriodicTask.objects.create(
+
+                interval=schedule,
+                name=name,
+                task=task,
+
+            )
+            print('test-----------')
+
+            return redirect('/asset/index')
+
     return render(requests, 'celery_add.html', {'form': form})
-
-
-
-
-        # schedule, created = IntervalSchedule.objects.get_or_create(
-        #      every=10,
-        #      period=IntervalSchedule.SECONDS,
-        # )
-        #
-        # PeriodicTask.objects.create(
-        #
-        #     interval=schedule,
-        #     name='Importing contact',
-        #     task='sys_admin.tasks.add',
-        #
-        # )
-        #
-        # return  HttpResponse('ok')
-
-
-
-
-
-
 
