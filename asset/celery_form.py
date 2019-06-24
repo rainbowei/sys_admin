@@ -32,18 +32,19 @@ class Celery_form(forms.Form):
             'min_length': '太短了',
             'max_length': "太长了",
         })
-    period = fields.CharField(
-        widget=widgets.Input(attrs={'class': 'form-control'}),
-        max_length=20,
-        min_length=6,
+    period = fields.ChoiceField(
+        choices=(
+            ('IntervalSchedule.HOURS', '时'),
+            ('IntervalSchedule.MINUTES', '分'),
+            ('IntervalSchedule.SECOND', '秒'),
+            ('IntervalSchedule.DAYS', '天'),
+        ),
         required=True,
-        label='周期',
+        label='单位',
         error_messages={
-            'required': '周期不能为空',
-            'min_length': '太短了',
-            'max_length': "太长了",
+            'required': '单位不能为空',
         })
-    every = fields.CharField(
+    every = fields.IntegerField(
         widget=widgets.Input(attrs={'class': 'form-control'}),
         required=True,
         label='时间',

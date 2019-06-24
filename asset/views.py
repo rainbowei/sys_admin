@@ -79,15 +79,23 @@ from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 
 def cellery_add(requests):
+
+    form=Celery_form()
+
+    if requests.method=="GET":
+        return render(requests, 'celery_add.html', {'form': form})
+
     form = Celery_form(requests.POST)
     if requests.method == "POST":
+       if  form.is_valid():
 
-            name = requests.POST.get('name'),
-            every = requests.POST.get('every'),
-            task = requests.POST.get('task'),
+            name = requests.POST.get('name')
+            every = requests.POST.get('every')
+            task = requests.POST.get('task')
+            period=requests.POST.get('period')
             schedule, created = IntervalSchedule.objects.get_or_create(
                 every=every,
-                period=IntervalSchedule.SECONDS,
+                period=period,
             )
 
             PeriodicTask.objects.create(
@@ -97,7 +105,6 @@ def cellery_add(requests):
                 task=task,
 
             )
-            print('test-----------')
 
             return redirect('/asset/index')
 
