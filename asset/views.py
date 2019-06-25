@@ -89,10 +89,14 @@ def cellery_add(requests):
     if requests.method == "POST":
        if  form.is_valid():
 
-            name = requests.POST.get('name')
-            every = requests.POST.get('every')
-            task = requests.POST.get('task')
-            period=requests.POST.get('period')
+            name = requests.POST.get('name').encode('utf-8')
+            every = requests.POST.get('every').encode('utf-8')
+            task = requests.POST.get('task').encode('utf-8')
+            period=requests.POST.get('period').encode('utf-8')
+
+
+
+            print  type(name),type(every),type(task),type(period)
             schedule, created = IntervalSchedule.objects.get_or_create(
                 every=every,
                 period=period,
@@ -110,3 +114,9 @@ def cellery_add(requests):
 
     return render(requests, 'celery_add.html', {'form': form})
 
+
+def crontabs(requests):
+
+
+
+    return  render(requests,'crontab.html',locals())

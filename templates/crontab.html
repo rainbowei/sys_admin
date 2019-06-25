@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}主机添加{% endblock %}
+{% block css %}{% endblock %}
+
+{% block breadcrumb %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Crontabs管理
+            <small>dashboard</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+            <li class="active">crontabs</li>
+        </ol>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    crontabs录入
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-8">
+                            <fieldset>
+                                <legend>添加crontabs</legend>
+                                <form role="form" method="post" id="addAssets" class="main form-horizontal" novalidate>
+
+
+                                    <input
+                                        type="hidden" name="csrfmiddlewaretoken"
+                                        value="OfKFOVffIkrAun6BmIk9VEy4QSh1QryBFdwtxkRirXxHvD05GBcgxJmbl0RiB5uO">
+                                    <fieldset>
+
+                                      <div class="form-group">
+                                             <label class="control-label col-lg-2">minute</label>
+                                             <div class="col-lg-5">
+                                                 <input name="minute" type="text" class="form-control"  value="*" placeholder="Required Field">
+                                                </div><!-- /.col -->
+                                      </div>
+
+                                        <div class="form-group">
+                                             <label class="control-label col-lg-2">hour</label>
+                                             <div class="col-lg-5">
+                                                 <input name="hour" type="text" class="form-control"  value="*" placeholder="Required Field">
+                                                </div><!-- /.col -->
+                                      </div>
+
+                                        <div class="form-group">
+                                             <label class="control-label col-lg-2">day_of_week</label>
+                                             <div class="col-lg-5">
+                                                 <input name="day_of_week" type="text" class="form-control"  value="*" placeholder="Required Field">
+                                                </div><!-- /.col -->
+                                      </div>
+
+
+                                             <div class="form-group">
+                                             <label class="control-label col-lg-2">day_of_month</label>
+                                             <div class="col-lg-5">
+                                                 <input name="day_of_month" type="text" class="form-control"  value="*" placeholder="Required Field">
+                                                </div><!-- /.col -->
+                                      </div>
+
+                                        <div class="form-group">
+                                             <label class="control-label col-lg-2">month_of_year</label>
+                                             <div class="col-lg-5">
+                                                 <input name="month_of_year" type="text" class="form-control"  value="*" placeholder="Required Field">
+                                                </div><!-- /.col -->
+                                      </div>
+
+                                    </fieldset>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"></label>
+                                        <button type="reset" class="btn btn-danger">撤销操作</button>
+                                        <button type="submit" class="btn btn-info" onclick="addAssetsData(this)">
+                                            确认提交
+                                        </button>
+                                    </div>
+
+                                </form>
+                            </fieldset>
+                        </div>
+
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
