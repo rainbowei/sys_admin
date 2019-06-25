@@ -16,6 +16,7 @@ urlpatterns = [
     url('task/',views.do_task),
     url('celery_add/', views.cellery_add),
     url('crontabs/', views.crontabs),
+    url('crontab_list/', views.crontab_list),
 
 
 ]

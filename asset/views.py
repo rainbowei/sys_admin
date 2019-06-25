@@ -120,3 +120,10 @@ def crontabs(requests):
 
 
     return  render(requests,'crontab.html',locals())
+
+
+
+def crontab_list(requests):
+
+
+    return  render(requests,'crontab_list.html',locals())
