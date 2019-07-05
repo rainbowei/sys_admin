@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<button id="btn">追加</button>
+<button id="del">删除</button>
+<div id="box">
+
+    <p></p>
+
+</div>
+
+
+</body>
+
+
+<script>
+
+
+    function $(idname) {
+        return document.getElementById(idname);
+
+    };
+
+
+    $('btn').onclick = function () {
+
+
+        //dom的增加
+        var op = document.createElement('p');
+
+        $('box').appendChild(op);
+        // dom的修改
+        op.innerText = 'sunkewei';
+        op.id = 'p1';
+
+        var oa = document.createElement('abc');
+        oa.innerText = 'abc';
+        $('box').insertBefore (oa,op);
+
+    };
+    //dom的删除
+    $('del').onclick = function () {
+           $('box').removeChild($('oa'));
+        $('box').removeChild($('p1'));
+
+
+    };
+
+
+</script>
+
+
+</html>

@@ -127,3 +127,10 @@ def crontab_list(requests):
 
 
     return  render(requests,'crontab_list.html',locals())
+
+
+
+def test(requests):
+
+
+    return  render(requests,'test.html',locals())
