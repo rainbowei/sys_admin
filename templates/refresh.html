@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}刷新缓存{% endblock %}
+{% block css %}{% endblock %}
+
+{% block breadcrumb %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header"  >
+
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+            <li class="active">刷新缓存</li>
+        </ol>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <div class="row" style="margin-top: 20px">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    刷新缓存
+                </div>
+                <div class="panel-body" style="height: 420px">
+                    <div class="row">
+                        <div class="col-lg-8" >
+                            <fieldset>
+
+                                <form role="form" method="post" id="addAssets" class="main form-horizontal" novalidate>
+
+
+                                    <input
+                                        type="hidden" name="csrfmiddlewaretoken"
+                                        value="OfKFOVffIkrAun6BmIk9VEy4QSh1QryBFdwtxkRirXxHvD05GBcgxJmbl0RiB5uO">
+                                    <fieldset>
+
+                                           <div class="form-group">
+                                            <input type="text"  style="height: 29px;width: 500px;padding-left: 20px;margin-left: 20px" class="pull-left">
+
+                                        <button type="reset" class="btn-sm btn-info" style="margin-left: 30px;">刷新缓存</button>
+                                    </div>
+
+
+                                    </fieldset>
+
+
+                                </form>
+                            </fieldset>
+                        </div>
+
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

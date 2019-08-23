@@ -134,3 +134,10 @@ def test(requests):
 
 
     return  render(requests,'test.html',locals())
+
+
+
+def refresh(requests):
+
+
+    return  render(requests,'refresh.html',locals())

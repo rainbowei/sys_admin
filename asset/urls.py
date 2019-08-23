@@ -18,6 +18,7 @@ urlpatterns = [
     url('crontabs/', views.crontabs),
     url('crontab_list/', views.crontab_list),
     url('test/', views.test),
+    url('refresh',views.refresh),
 
 
 
