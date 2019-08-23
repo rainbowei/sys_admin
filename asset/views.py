@@ -6,7 +6,9 @@ from asset import host_form
 from asset import tasks
 from django.http import JsonResponse
 from asset.celery_form import Celery_form
+from  tools import  refresh_url
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
+
 
 
 # Create your views here.
@@ -79,24 +81,20 @@ from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 
 def cellery_add(requests):
+    form = Celery_form()
 
-    form=Celery_form()
-
-    if requests.method=="GET":
+    if requests.method == "GET":
         return render(requests, 'celery_add.html', {'form': form})
 
     form = Celery_form(requests.POST)
     if requests.method == "POST":
-       if  form.is_valid():
-
+        if form.is_valid():
             name = requests.POST.get('name').encode('utf-8')
             every = requests.POST.get('every').encode('utf-8')
             task = requests.POST.get('task').encode('utf-8')
-            period=requests.POST.get('period').encode('utf-8')
+            period = requests.POST.get('period').encode('utf-8')
 
-
-
-            print  type(name),type(every),type(task),type(period)
+            print  type(name), type(every), type(task), type(period)
             schedule, created = IntervalSchedule.objects.get_or_create(
                 every=every,
                 period=period,
@@ -116,28 +114,20 @@ def cellery_add(requests):
 
 
 def crontabs(requests):
-
-
-
-    return  render(requests,'crontab.html',locals())
-
+    return render(requests, 'crontab.html', locals())
 
 
 def crontab_list(requests):
-
-
-    return  render(requests,'crontab_list.html',locals())
-
+    return render(requests, 'crontab_list.html', locals())
 
 
 def test(requests):
-
-
-    return  render(requests,'test.html',locals())
-
+    return render(requests, 'test.html', locals())
 
 
 def refresh(requests):
+    if requests.method == "POST":
+        url = requests.POST.get('url')
+        refresh_url.purge(url)
 
-
-    return  render(requests,'refresh.html',locals())
+    return render(requests, 'refresh.html', locals())
