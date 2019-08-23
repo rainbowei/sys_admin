@@ -9,14 +9,14 @@ from django.core.validators import  URLValidator
 
 
 class  refresh_url(forms.Form):
-    urls= forms.CharField(
-                min_length=6,  # 设置最小长度
-                max_length=12,  # 设置最大长度
+    urls= forms.URLField(
+                min_length=16,  # 设置最小长度
+              #  max_length=12,  # 设置最大长度
                 label="地址",  # 设置标签名
 
                 # 错误信息提示设置
                 error_messages={
-                    "min_length": "地址不能少于6位",
+                    "min_length": "地址不能少16位",
                     "max_length": '地址不能超过12位',
                     "required": "地址不能为空"
                 },
