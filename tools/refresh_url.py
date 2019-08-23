@@ -8,10 +8,11 @@ import subprocess
 
 
 def purge(url):
-    result = subprocess.call('curl -I -X PURGE %s' % (url), shell=True)
-    if result == 0:
-        print  'ok'
-    else:
-        print  '%s is not find'%(url)
+    try:
+      result = subprocess.check_call('curl -I -X PURGE %s' % (url), shell=True)
+      return  '刷新成功'
 
-purge('http://www.baidu./')
+    except Exception  as error:
+      return error
+
+

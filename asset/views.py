@@ -6,7 +6,8 @@ from asset import host_form
 from asset import tasks
 from django.http import JsonResponse
 from asset.celery_form import Celery_form
-from  tools import  refresh_url
+from   tools import  refresh_url
+from  asset import refresh_form
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 
@@ -126,8 +127,15 @@ def test(requests):
 
 
 def refresh(requests):
-    if requests.method == "POST":
-        url = requests.POST.get('url')
-        refresh_url.purge(url)
+    test=refresh_form.refresh_url()
+    if requests.method=="GET":
 
+        return render(requests,'refresh.html',locals())
+
+
+    if requests.method == "POST":
+        test=refresh_form.refresh_url(requests.POST)
+        if test.is_valid():
+            re_url = test.cleaned_data['urls']
+            result=refresh_url.purge(re_url)
     return render(requests, 'refresh.html', locals())
