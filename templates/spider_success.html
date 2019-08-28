@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+ <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.min.js"></script>
+
+</head>
+<body>
+<div  style="width: 900px;margin: auto">
+<div id="main" style="height:400px;margin: auto">
+</div>
+
+<table class="table table-bordered" style="margin-top: 20px">
+  <thead>
+    <tr>
+      <th scope="col">网站类型</th>
+      <th scope="col">爬虫类型</th>
+      <th scope="col">成功数</th>
+      <th scope="col">日期</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>www官网</td>
+      <td>baidu_success</td>
+        <td>181191</td>
+      <td>2019/08/25</td>
+    </tr>
+    <tr>
+      <td>www官网</td>
+      <td>baidu_success</td>
+        <td>206345</td>
+      <td>2019/08/26</td>
+    </tr>
+    <tr>
+
+      <td>www官网</td>
+      <td>baidu_success</td>
+        <td>190940</td>
+      <td>2019/08/27</td>
+    </tr>
+
+   <tr>
+      <td>www官网</td>
+      <td>360_success</td>
+        <td>98562</td>
+      <td>2019/08/25</td>
+    </tr>
+    <tr>
+      <td>www官网</td>
+      <td>360_success</td>
+        <td>67684</td>
+      <td>2019/08/26</td>
+    </tr>
+    <tr>
+
+      <td>www官网</td>
+      <td>360_success</td>
+        <td>161022</td>
+      <td>2019/08/27</td>
+    </tr>
+
+    <tr>
+      <td>www官网</td>
+      <td>sogou_success</td>
+        <td>1624999</td>
+      <td>2019/08/25</td>
+    </tr>
+    <tr>
+      <td>www官网</td>
+      <td>sogou_success</td>
+        <td>1000959</td>
+      <td>2019/08/26</td>
+    </tr>
+    <tr>
+
+      <td>www官网</td>
+      <td>sogou_success</td>
+        <td>1308909</td>
+      <td>2019/08/27</td>
+    </tr>
+
+
+   <tr>
+      <td>www官网</td>
+      <td>yisou_success</td>
+        <td>277762</td>
+      <td>2019/08/25</td>
+    </tr>
+    <tr>
+      <td>www官网</td>
+      <td>yisou_success</td>
+        <td>278908</td>
+      <td>2019/08/26</td>
+    </tr>
+    <tr>
+
+      <td>www官网</td>
+      <td>yisou_success</td>
+        <td>274361</td>
+      <td>2019/08/27</td>
+    </tr>
+
+
+
+  </tbody>
+</table>
+
+</div>
+ <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        option = {
+    title: {
+
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['baidu_success','360_success','sogou_success','yisou_success']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2019/09/25','2019/09/26','2019/09/27']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'baidu_success',
+            type:'line',
+            stack: '总量',
+            data:[181191,206345,190940],
+
+        },
+
+        {
+            name:'360_success',
+            type:'line',
+            stack: '总量',
+            data:[98562,67684,161022]
+        },
+
+        {
+            name:'sogou_success',
+            type:'line',
+            stack: '总量',
+            data:[1624999,1000959,1308009]
+        },
+           {
+            name:'yisou_success',
+            type:'line',
+            stack: '总量',
+            data:[277762,278908,274361]
+        }
+    ]
+};
+
+
+
+        myChart.setOption(option);
+    </script>
+
+
+
+
+</body>
+</html>

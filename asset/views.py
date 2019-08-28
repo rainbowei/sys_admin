@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
-from asset.models import Host
+from asset.models import Host,Spider
 from asset import host_form
 from asset import tasks
 from django.http import JsonResponse
 from asset.celery_form import Celery_form
-from   tools import  refresh_url
-from  asset import refresh_form
+from tools import refresh_url
+from asset import refresh_form
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
-
 
 
 # Create your views here.
@@ -123,19 +122,24 @@ def crontab_list(requests):
 
 
 def test(requests):
-    return render(requests, 'test.html', locals())
+    return render(requests, 'spider_success.html', locals())
 
 
 def refresh(requests):
-    test=refresh_form.refresh_url()
-    if requests.method=="GET":
-
-        return render(requests,'refresh.html',locals())
-
+    test = refresh_form.refresh_url()
+    if requests.method == "GET":
+        return render(requests, 'refresh.html', locals())
 
     if requests.method == "POST":
-        test=refresh_form.refresh_url(requests.POST)
+        test = refresh_form.refresh_url(requests.POST)
         if test.is_valid():
             re_url = test.cleaned_data['urls']
-            result=refresh_url.purge(re_url)
+            result = refresh_url.purge(re_url)
     return render(requests, 'refresh.html', locals())
+
+
+def spider(requests):
+    if requests.method == "GET":
+        spider_all =Spider.objects.all()
+
+        return render(requests, 'spider.html', locals())

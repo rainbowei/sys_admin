@@ -53,3 +53,24 @@ class Host(models.Model):
         verbose_name='主机列表'      #注册到admin后台的表名
         db_table = 'addhost'
         ordering = ['-c_time']
+
+
+class Spider(models.Model):
+    id = models.AutoField(primary_key=True)
+    site = models.CharField(max_length=64, unique=True, verbose_name='网站类型')
+    error = models.CharField(max_length=64, unique=True, verbose_name='错误个数')
+    success = models.CharField(max_length=64, unique=True, verbose_name='成功个数')
+    kind = models.CharField(max_length=64, unique=True, verbose_name='错误格式')
+    c_time = models.DateTimeField(auto_now_add=True, verbose_name='添加日期')
+
+    def __str__(self):
+        return  self.site     #注册到admin后显示为具体到列名，没有到话回显示object对象。
+    class Meta:
+
+        verbose_name='爬虫统计'      #注册到admin后台的表名
+        db_table = 'spider'
+        ordering = ['-c_time']
+
+
+
+
