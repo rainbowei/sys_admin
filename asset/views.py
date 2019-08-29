@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
-from asset.models import Host,Spider
+from asset.models import Host, Spider, Kind
 from asset import host_form
 from asset import tasks
 from django.http import JsonResponse
@@ -94,7 +94,6 @@ def cellery_add(requests):
             task = requests.POST.get('task').encode('utf-8')
             period = requests.POST.get('period').encode('utf-8')
 
-
             schedule, created = IntervalSchedule.objects.get_or_create(
                 every=every,
                 period=period,
@@ -140,6 +139,26 @@ def refresh(requests):
 
 def spider(requests):
     if requests.method == "GET":
-        spider_all =Spider.objects.all()
+        data = {
+            'bianliang': [],
+            'time': [],
+            'data': [],
+        }
 
-        return render(requests, 'spider.html', locals())
+        sp = Kind.objects.values('kind')
+        spider_name = []
+        #获取kind表所有的kind字段，并放入spider_name列表
+        for i in sp:
+            kind = (i['kind'])
+            spider_name.append(kind)
+
+        #通过spider_name 获取spider表的内容。
+        for k in spider_name:
+            ret = Kind.objects.get(kind=k)
+            sp_result = ret.spider_set.all()
+            for  i in sp_result:
+                success=i.success
+                print(success)
+
+
+    return render(requests, 'spider.html', locals())
