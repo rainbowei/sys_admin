@@ -158,7 +158,11 @@ def spider(requests):
             sp_result = ret.spider_set.all()
             for  i in sp_result:
                 success=i.success
-                print(success)
+                error=i.error
+                date=i.c_time
+
+                print(k,success,error,date)
 
 
     return render(requests, 'spider.html', locals())
+
