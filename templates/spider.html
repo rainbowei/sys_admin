@@ -1,4 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+ <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.min.js"></script>
+
+</head>
+<body>
+<div  style="width: 900px;margin: auto">
+<div id="success" style="height:400px;margin-top: 20px;">
+</div>
+
+  <div id="error" style="height:400px;margin-top: 20px;">
+</div>
+
+   <div id="msuccess" style="height:400px;margin-top: 20px;">
+</div>
+
+ <div id="merror" style="height:400px;margin-top: 20px;">
+</div>
 
 
-    <script src="{% static 'echarts.min.js' %}"></script>
 
+  </tbody>
+</table>
+
+</div>
+ <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('success'));
+
+        // 指定图表的配置项和数据
+        option = {
+    title: {
+        text: 'www站爬虫成功图',
+
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+
+    legend: {
+        data:['baidu_success','360_success','sogou_success','yisou_success']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2019/09/25','2019/09/26','2019/09/27']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'baidu_success',
+            type:'line',
+            stack: '总量',
+            data:[181191,206345,190940],
+
+        },
+
+        {
+            name:'360_success',
+            type:'line',
+            stack: '总量',
+            data:[98562,67684,161022]
+        },
+
+        {
+            name:'sogou_success',
+            type:'line',
+            stack: '总量',
+            data:[1624999,1000959,1308009]
+        },
+           {
+            name:'yisou_success',
+            type:'line',
+            stack: '总量',
+            data:[277762,278908,274361]
+        }
+    ]
+};
+
+
+
+        myChart.setOption(option);
+    </script>
+
+
+
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('error'));
+
+        // 指定图表的配置项和数据
+        option = {
+    title: {
+        text: 'www站爬虫错误图',
+
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+
+    legend: {
+        data:['baidu_error','360_error','sogou_error','yisou_error']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2019/09/25','2019/09/26','2019/09/27']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'baidu_error',
+            type:'line',
+            stack: '总量',
+            data:[9881,13574,8759],
+
+        },
+
+        {
+            name:'360_error',
+            type:'line',
+            stack: '总量',
+            data:[835,980,1875]
+        },
+
+        {
+            name:'sogou_error',
+            type:'line',
+            stack: '总量',
+            data:[10420,13968,10871]
+        },
+           {
+            name:'yisou_error',
+            type:'line',
+            stack: '总量',
+            data:[23607,24757,22481]
+        }
+    ]
+};
+
+
+
+        myChart.setOption(option);
+    </script>
+
+
+
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('msuccess'));
+
+        // 指定图表的配置项和数据
+        option = {
+    title: {
+        text: 'm站爬虫成功图',
+
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+
+    legend: {
+        data:['baidu_success','360_success','sogou_success','yisou_success']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2019/09/25','2019/09/26','2019/09/27']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'baidu_success',
+            type:'line',
+            stack: '总量',
+            data:[275374,288038,240980],
+
+        },
+
+        {
+            name:'360_success',
+            type:'line',
+            stack: '总量',
+            data:[1106,1042,857]
+        },
+
+        {
+            name:'sogou_success',
+            type:'line',
+            stack: '总量',
+            data:[37041,40400,42537]
+        },
+           {
+            name:'yisou_success',
+            type:'line',
+            stack: '总量',
+            data:[266643,235540,172344]
+        }
+    ]
+};
+
+
+
+        myChart.setOption(option);
+    </script>
+
+
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('merror'));
+
+        // 指定图表的配置项和数据
+        option = {
+    title: {
+        text: 'm站爬虫错误图',
+
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+
+    legend: {
+        data:['baidu_error','360_error','sogou_error','yisou_erro']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2019/09/25','2019/09/26','2019/09/27']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'baidu_error',
+            type:'line',
+            stack: '总量',
+            data:[8046,6818,6698],
+
+        },
+
+        {
+            name:'360_error',
+            type:'line',
+            stack: '总量',
+            data:[15,14,12]
+        },
+
+        {
+            name:'sogou_error',
+            type:'line',
+            stack: '总量',
+            data:[2007,2428,1728]
+        },
+           {
+            name:'yisou_error',
+            type:'line',
+            stack: '总量',
+            data:[10685,8359,6497]
+        }
+    ]
+};
+
+
+
+        myChart.setOption(option);
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

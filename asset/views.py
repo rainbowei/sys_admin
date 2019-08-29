@@ -94,7 +94,7 @@ def cellery_add(requests):
             task = requests.POST.get('task').encode('utf-8')
             period = requests.POST.get('period').encode('utf-8')
 
-            print  type(name), type(every), type(task), type(period)
+
             schedule, created = IntervalSchedule.objects.get_or_create(
                 every=every,
                 period=period,

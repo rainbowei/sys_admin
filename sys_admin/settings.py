@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'sys_admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'sys_admin',
+        'NAME':'sysadmin',
         'HOST':'127.0.0.1',
         'USER':'root',
         'PASSWORD':'sunkewei'

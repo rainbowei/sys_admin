@@ -1,5 +1,5 @@
 from django.contrib import admin
-from   models import  Host
+from   asset.models import  Host
 
 # Register your models here.
 class hostadmin(admin.ModelAdmin):
