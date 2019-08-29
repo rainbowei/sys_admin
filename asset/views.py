@@ -147,22 +147,29 @@ def spider(requests):
 
         sp = Kind.objects.values('kind')
         spider_name = []
-        #获取kind表所有的kind字段，并放入spider_name列表
+        tb_result = []
+        # 获取kind表所有的kind字段，并放入spider_name列表
         for i in sp:
             kind = (i['kind'])
             spider_name.append(kind)
 
-        #通过spider_name 获取spider表的内容。
-        for k in spider_name:
-            ret = Kind.objects.get(kind=k)
-            sp_result = ret.spider_set.all()
-            for  i in sp_result:
-                success=i.success
-                error=i.error
-                date=i.c_time
+            data['bianliang'].append(kind + '_sucess')
 
-                print(k,success,error,date)
+            last = {
+                'name': kind + '_sucess',
+                'type': 'line',
+                'stack': '总量',
+                'data': [],
+            }
+
+        out_baidu = Spider.objects.filter(kind_id='baidu')
+        for  m in out_baidu:
+               data['time'].append(m.c_time)
+
+
+
+
+# 通过spider_name 获取spider表的内容。
 
 
     return render(requests, 'spider.html', locals())
-

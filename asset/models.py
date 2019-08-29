@@ -2,9 +2,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-import importlib, sys
-
-importlib.reload(sys)
+# import importlib, sys
+#
+# importlib.reload(sys)
 
 
 # Create your models here.
