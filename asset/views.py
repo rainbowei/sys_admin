@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from asset.celery_form import Celery_form
 from tools import refresh_url
 from asset import refresh_form
+import json
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 
@@ -139,37 +140,97 @@ def refresh(requests):
 
 def spider(requests):
     if requests.method == "GET":
-        data = {
-            'bianliang': [],
-            'time': [],
-            'data': [],
-        }
+        db_data = Spider.objects.filter()
+        m = {}
+        www = {}
+        www['title'] = 'www'
+        m['title'] = 'm'
 
-        sp = Kind.objects.values('kind')
-        spider_name = []
-        tb_result = []
-        # 获取kind表所有的kind字段，并放入spider_name列表
-        for i in sp:
-            kind = (i['kind'])
-            spider_name.append(kind)
+        www['success_legend'] = []
+        www['error_legend'] = []
 
-            data['bianliang'].append(kind + '_sucess')
+        m['success_legend'] = []
+        m['error_legend'] = []
 
-            last = {
-                'name': kind + '_sucess',
-                'type': 'line',
-                'stack': '总量',
-                'data': [],
-            }
+        time = []
 
-        out_baidu = Spider.objects.filter(kind_id='baidu')
-        for  m in out_baidu:
-               data['time'].append(m.c_time)
+        #m['legend'] = ['baidu_success','baidu_error','sogou_success','sogou_error','360_success','360_error','yisou_success','yisou_error']
 
 
+        www['success_data'] = []
+        www['error_data'] = []
+        m['success_data'] = []
+        m['error_data'] = []
+        for item in db_data:
+
+            if item.c_time not in time:
+                time.append(item.c_time)
+            flag = 1
+            if item.site == 'www':
+
+                for detail in www['success_data']:
+                    if detail['name'] == item.kind_id + '_success':
+                        flag = 2
+                        detail['data'].append(item.success)
+                for detail in www['error_data']:
+                    if detail['name'] == item.kind_id + '_error':
+                        flag = 2
+                        detail['data'].append(item.error)
+
+                if flag == 1:
+                    item_success_data = {}
+                    item_error_data = {}
+                    item_success_data['name'] = item.kind_id + '_success'
+                    item_error_data['name'] = item.kind_id + '_error'
+                    item_error_data['data'] = []
+                    item_success_data['data'] = []
+                    item_success_data['data'].append(item.success)
+                    item_error_data['data'].append(item.error)
+                    www['error_data'].append(item_error_data)
+                    www['success_data'].append(item_success_data)
+
+                if item.kind_id + '_success' not in www['success_legend']:
+                    www['success_legend'].append(item.kind_id + '_success')
+                if item.kind_id + '_error' not in www['error_legend']:
+                    www['error_legend'].append(item.kind_id + '_error')
+
+            else:
+
+                for detail in m['success_data']:
+                    if detail['name'] == item.kind_id + '_success':
+                        flag = 2
+                        detail['data'].append(item.success)
+                for detail in m['error_data']:
+                    if detail['name'] == item.kind_id + '_error':
+                        flag = 2
+                        detail['data'].append(item.error)
+
+                if flag == 1:
+                    item_success_data = {}
+                    item_error_data = {}
+                    item_success_data['name'] = item.kind_id + '_success'
+                    item_error_data['name'] = item.kind_id + '_error'
+                    item_error_data['data'] = []
+                    item_success_data['data'] = []
+                    item_success_data['data'].append(item.success)
+                    item_error_data['data'].append(item.error)
+                    m['success_data'].append(item_success_data)
+                    m['error_data'].append(item_error_data)
+
+                if item.kind_id + '_success' not in m['success_legend']:
+                    m['success_legend'].append(item.kind_id + '_success')
+                if item.kind_id + '_error' not in m['error_legend']:
+                    m['error_legend'].append(item.kind_id + '_error')
 
 
-# 通过spider_name 获取spider表的内容。
+
+
+        m['time'] = time
+        www['time'] = time
+
+        result = []
+        result.append(www)
+        result.append(m)
 
 
     return render(requests, 'spider.html', locals())
