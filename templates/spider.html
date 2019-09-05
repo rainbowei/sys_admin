@@ -12,17 +12,17 @@
 </head>
 <body>
 <div style="width: 900px;margin: auto">
-    <div id="wwwsuccess" style="height:400px;margin-top: 20px;">
+    <div id="www_success" style="height:400px;margin-top: 20px;">
     </div>
-    <div id="wwwerror" style="height:400px;margin-top: 20px;">
-    </div>
-
-      <div id="msuccess" style="height:400px;margin-top: 20px;">
+     <div id="www_error" style="height:400px;margin-top: 20px;">
     </div>
 
-
-      <div id="merror" style="height:400px;margin-top: 20px;">
+     <div id="m_success" style="height:400px;margin-top: 20px;">
     </div>
+     <div id="m_error" style="height:400px;margin-top: 20px;">
+    </div>
+
+
 
 </div>
 
@@ -38,9 +38,12 @@
 
         dataType: "json",
         success: function (data) {
-            myChart = echarts.init(document.getElementById('wwwsuccess'));
+            www_success = echarts.init(document.getElementById('www_success'));
+            www_error = echarts.init(document.getElementById('www_error'));
+            m_success = echarts.init(document.getElementById('m_success'));
+            m_error = echarts.init(document.getElementById('m_error'));
 
-            option = {
+             www_success_option = {
                 title: {
                     text: data[0].title + "成功",
 
@@ -73,30 +76,9 @@
                 },
                 series: data[0].success_data
             };
-            myChart.setOption(option);
-
-        }
-    });
-
-    // 指定图表的配置项和数据
 
 
-</script>
-
-
-<script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-
-    $.ajax({
-        type: "GET",
-        url: "http://127.0.0.1:8000/asset/api_spider",
-
-        dataType: "json",
-        success: function (data) {
-            console.log(data)
-            myChart = echarts.init(document.getElementById('wwwerror'));
-
-            option = {
+             www_error_opiton= {
                 title: {
                     text: data[0].title + "错误",
 
@@ -129,27 +111,9 @@
                 },
                 series: data[0].error_data
             };
-            myChart.setOption(option);
-
-        }
-    });
-
-    // 指定图表的配置项和数据
 
 
-</script>
-<script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-
-    $.ajax({
-        type: "GET",
-        url: "http://127.0.0.1:8000/asset/api_spider",
-
-        dataType: "json",
-        success: function (data) {
-            myChart = echarts.init(document.getElementById('msuccess'));
-
-            option = {
+               m_success_option = {
                 title: {
                     text: data[1].title + "成功",
 
@@ -182,28 +146,9 @@
                 },
                 series: data[1].success_data
             };
-            myChart.setOption(option);
-
-        }
-    });
-
-    // 指定图表的配置项和数据
 
 
-</script>
-<script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-
-    $.ajax({
-        type: "GET",
-        url: "http://127.0.0.1:8000/asset/api_spider",
-
-        dataType: "json",
-        success: function (data) {
-            console.log(data)
-            myChart = echarts.init(document.getElementById('merror'));
-
-            option1 = {
+               m_error_option = {
                 title: {
                     text: data[1].title + "错误",
 
@@ -236,7 +181,11 @@
                 },
                 series: data[1].error_data
             };
-            myChart.setOption(option1);
+
+            www_success.setOption(www_success_option);
+            www_error.setOption(www_error_opiton);
+            m_success.setOption(m_success_option);
+            m_error.setOption(m_error_option);
 
         }
     });
@@ -245,7 +194,6 @@
 
 
 </script>
-
 
 
 
