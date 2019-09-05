@@ -16,9 +16,9 @@ from django_celery_beat.models import PeriodicTask, IntervalSchedule
 #当前日期格式
 cur_date = datetime.datetime.now().date()
 #前一天日期
-yester_day = cur_date - datetime.timedelta(days=1)
+defalut_yester_day = cur_date - datetime.timedelta(days=1)
 #前一周日期
-week = cur_date - datetime.timedelta(weeks=1)
+defalut_week = cur_date - datetime.timedelta(weeks=1)
 # Create your views here.
 
 
@@ -147,6 +147,8 @@ def refresh(requests):
 
 def api_spider(requests):
     if requests.method == "GET":
+        week =requests.GET.get('week',default = defalut_week)
+        yester_day =requests.GET.get('yester_day',default = defalut_yester_day)
         db_data = Spider.objects.filter(c_time__range=(week,yester_day)).order_by('c_time')
         print(yester_day,week)
 
