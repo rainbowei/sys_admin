@@ -74,7 +74,7 @@ class Spider(models.Model):
     error = models.CharField(max_length=64, verbose_name='错误个数')
     success = models.CharField(max_length=64, verbose_name='成功个数')
     kind = models.ForeignKey(Kind, to_field='kind')
-    c_time = models.CharField(max_length=64, verbose_name='添加日期')
+    c_time = models.DateField(max_length=64, verbose_name='添加日期')
 
     def __str__(self):
         return self.site  # 注册到admin后显示为具体到列名，没有到话回显示object对象。

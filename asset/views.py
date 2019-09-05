@@ -9,10 +9,16 @@ from asset.celery_form import Celery_form
 from tools import refresh_url
 from asset import refresh_form
 from django.http import HttpResponse, JsonResponse
+import  datetime
 import json
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
-
+#当前日期格式
+cur_date = datetime.datetime.now().date()
+#前一天日期
+yester_day = cur_date - datetime.timedelta(days=1)
+#前一周日期
+week = cur_date - datetime.timedelta(weeks=1)
 # Create your views here.
 
 
@@ -141,7 +147,9 @@ def refresh(requests):
 
 def api_spider(requests):
     if requests.method == "GET":
-        db_data = Spider.objects.filter().order_by('c_time')
+        db_data = Spider.objects.filter(c_time__range=(week,yester_day)).order_by('c_time')
+        print(yester_day,week)
+
         m = {}
         www = {}
         www['title'] = 'www'
