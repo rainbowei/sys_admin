@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from asset.celery_form import Celery_form
 from tools import refresh_url
 from asset import refresh_form
+from django.http import HttpResponse, JsonResponse
 import json
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
@@ -138,9 +139,9 @@ def refresh(requests):
     return render(requests, 'refresh.html', locals())
 
 
-def spider(requests):
+def api_spider(requests):
     if requests.method == "GET":
-        db_data = Spider.objects.filter()
+        db_data = Spider.objects.filter().order_by('c_time')
         m = {}
         www = {}
         www['title'] = 'www'
@@ -154,8 +155,7 @@ def spider(requests):
 
         time = []
 
-        #m['legend'] = ['baidu_success','baidu_error','sogou_success','sogou_error','360_success','360_error','yisou_success','yisou_error']
-
+        # m['legend'] = ['baidu_success','baidu_error','sogou_success','sogou_error','360_success','360_error','yisou_success','yisou_error']
 
         www['success_data'] = []
         www['error_data'] = []
@@ -182,6 +182,10 @@ def spider(requests):
                     item_error_data = {}
                     item_success_data['name'] = item.kind_id + '_success'
                     item_error_data['name'] = item.kind_id + '_error'
+                    item_success_data['type'] = "line"
+                    item_error_data['type'] = "line"
+                    item_success_data['stack'] = "总量"
+                    item_error_data['stack'] = "总量"
                     item_error_data['data'] = []
                     item_success_data['data'] = []
                     item_success_data['data'].append(item.success)
@@ -210,6 +214,11 @@ def spider(requests):
                     item_error_data = {}
                     item_success_data['name'] = item.kind_id + '_success'
                     item_error_data['name'] = item.kind_id + '_error'
+                    item_success_data['type'] = "line"
+                    item_error_data['type'] = "line"
+                    item_success_data['stack'] = "总量"
+                    item_error_data['stack'] = "总量"
+
                     item_error_data['data'] = []
                     item_success_data['data'] = []
                     item_success_data['data'].append(item.success)
@@ -222,9 +231,6 @@ def spider(requests):
                 if item.kind_id + '_error' not in m['error_legend']:
                     m['error_legend'].append(item.kind_id + '_error')
 
-
-
-
         m['time'] = time
         www['time'] = time
 
@@ -233,4 +239,11 @@ def spider(requests):
         result.append(m)
 
 
-    return render(requests, 'spider.html', locals())
+
+    return JsonResponse(result,safe=False)
+
+
+
+def spider(requests):
+    if requests.method == "GET":
+        return render(requests,'spider.html',locals())

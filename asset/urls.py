@@ -19,6 +19,7 @@ urlpatterns = [
     url('crontab_list/', views.crontab_list),
     url('test/', views.test),
     url('refresh',views.refresh),
+    url('api_spider', views.api_spider),
     url('spider', views.spider),
 
 
