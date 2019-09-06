@@ -1,34 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 {% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>好豆网爬虫统计图</title>
-    <meta charset="utf-8">
-    <!-- 引入 ECharts 文件 -->
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
-    <script src="{% static 'laydate/laydate.js' %}"></script>
+{% block title %}主机添加{% endblock %}
+{% block css %}{% endblock %}
+   <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
 
-</head>
-<body>
 
-<form class="form-inline">
+{% block breadcrumb %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+            <li class="active">主机添加</li>
+        </ol>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <div class="row" style="margin-top: 20px">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    资产录入
+                </div>
+
+                <form class="form-inline" style="margin-top: 20px">
     <div class="form-group" style="margin: auto">
-        <label for="start">开始日期</label>
-        <input type="text" class="form-control" id="start" placeholder={{ defalut_week }} style="margin-left: 15px">
+        <label for="start" style="margin-left: 30px">开始日期</label>
+        <input type="text"  autocomplete="off" class="form-control" id="start" placeholder={{ defalut_week }} style="margin-left: 15px">
     </div>
 
     <div class="form-group" style="margin:auto">
-        <label for="end">结束日期</label>
-        <input type="text" class="form-control" id="end" placeholder={{ defalut_yester_day }} style="margin-left: 15px">
+        <label for="end" style="margin-left: 30px">结束日期</label>
+        <input type="text"  autocomplete="off" class="form-control" id="end" placeholder={{ defalut_yester_day }} style="margin-left: 15px">
     </div>
+
 
 </form>
 
-
-<div style="width: 900px;margin: auto">
+<div style="margin: auto">
     <div id="www_success" style="height:400px;margin-top: 20px;">
     </div>
     <div id="www_error" style="height:400px;margin-top: 20px;">
@@ -42,7 +54,30 @@
 </div>
 
 
-<script type="text/javascript">
+
+
+
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="{% static 'laydate/laydate.js' %}"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.min.js"></script>
+
+
+   <script type="text/javascript">
 
 
     laydate.render({
@@ -235,12 +270,12 @@ function init(start,end){
 
 
 
-
     // 指定图表的配置项和数据
 
 
 </script>
 
 
-</body>
-</html>
+
+
+{% endblock %}
