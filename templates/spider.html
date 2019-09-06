@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>好豆网爬虫统计图</title>
@@ -8,33 +9,71 @@
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="{% static 'laydate/laydate.js' %}"></script>
 
 </head>
 <body>
+
+<form class="form-inline">
+    <div class="form-group" style="margin: auto">
+        <label for="start">开始日期</label>
+        <input type="text" class="form-control" id="start" placeholder={{ defalut_week }} style="margin-left: 15px">
+    </div>
+
+    <div class="form-group" style="margin:auto">
+        <label for="end">结束日期</label>
+        <input type="text" class="form-control" id="end" placeholder={{ defalut_yester_day }} style="margin-left: 15px">
+    </div>
+
+</form>
+
+
 <div style="width: 900px;margin: auto">
     <div id="www_success" style="height:400px;margin-top: 20px;">
     </div>
-     <div id="www_error" style="height:400px;margin-top: 20px;">
+    <div id="www_error" style="height:400px;margin-top: 20px;">
     </div>
 
-     <div id="m_success" style="height:400px;margin-top: 20px;">
+    <div id="m_success" style="height:400px;margin-top: 20px;">
     </div>
-     <div id="m_error" style="height:400px;margin-top: 20px;">
+    <div id="m_error" style="height:400px;margin-top: 20px;">
     </div>
-
-
 
 </div>
 
 
-
-
-
 <script type="text/javascript">
+
+
+    laydate.render({
+        elem: '#start'
+        , done: function (value, date) {
+            init($("#start").val(),$("#end").val())
+        }
+    });
+
+    laydate.render({
+        elem: '#end'
+        , done: function (value, date) {
+            init($("#start").val(),$("#end").val())
+
+        }
+    });
+
+        {#var start = $("#start").val();#}
+        {#var end = $("#end").val();#}
+
+    init()
+
+
+function init(start,end){
+
+
     // 基于准备好的dom，初始化echarts实例
     $.ajax({
         type: "GET",
-        //data:{"week":"2019-09-01","yester_day":"2019-09-04"},
+        data:{"week":start,"yester_day":end},
+
         url: "http://127.0.0.1:8000/asset/api_spider",
 
         dataType: "json",
@@ -44,7 +83,7 @@
             m_success = echarts.init(document.getElementById('m_success'));
             m_error = echarts.init(document.getElementById('m_error'));
 
-             www_success_option = {
+            www_success_option = {
                 title: {
                     text: data[0].title + "成功",
 
@@ -79,7 +118,7 @@
             };
 
 
-             www_error_opiton= {
+            www_error_opiton = {
                 title: {
                     text: data[0].title + "错误",
 
@@ -114,7 +153,7 @@
             };
 
 
-               m_success_option = {
+            m_success_option = {
                 title: {
                     text: data[1].title + "成功",
 
@@ -149,7 +188,7 @@
             };
 
 
-               m_error_option = {
+            m_error_option = {
                 title: {
                     text: data[1].title + "错误",
 
@@ -191,13 +230,16 @@
         }
     });
 
+
+}
+
+
+
+
     // 指定图表的配置项和数据
 
 
 </script>
-
-
-
 
 
 </body>

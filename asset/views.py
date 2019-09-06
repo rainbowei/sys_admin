@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
-from asset.models import Host, Spider, Kind
+from asset.models import Host, Spider,Kind
 from asset import host_form
 from asset import tasks
 from django.http import JsonResponse
@@ -146,11 +146,14 @@ def refresh(requests):
 
 
 def api_spider(requests):
+
+
+
     if requests.method == "GET":
         week =requests.GET.get('week',default = defalut_week)
         yester_day =requests.GET.get('yester_day',default = defalut_yester_day)
         db_data = Spider.objects.filter(c_time__range=(week,yester_day)).order_by('c_time')
-        print(yester_day,week)
+
 
         m = {}
         www = {}
@@ -255,5 +258,12 @@ def api_spider(requests):
 
 
 def spider(requests):
+    # 当前日期格式
+    cur_date = datetime.datetime.now().date()
+    # 前一天日期
+    defalut_yester_day = cur_date - datetime.timedelta(days=1)
+    # 前一周日期
+    defalut_week = cur_date - datetime.timedelta(weeks=1)
+    # Create your views here.
     if requests.method == "GET":
         return render(requests,'spider.html',locals())
